@@ -322,7 +322,8 @@ function Start-Patcher {
         if ($IsLinux) {
             Start-Process mono -WorkingDirectory $managed_dir -ArgumentList "$patcher_exe -c -p `"$managed_dir`" $patcher_file" -NoNewWindow -Wait
         } elseif ($IsWindows) {
-            Start-Process $patcher_exe -WorkingDirectory $managed_dir -ArgumentList "-c -p `"$managed_dir`" -docs $docs_dir/docs.json $patcher_file" -NoNewWindow -Wait
+#            Start-Process $patcher_exe -WorkingDirectory $managed_dir -ArgumentList "-c -p `"$managed_dir`" -docs $docs_dir/docs.json $patcher_file" -NoNewWindow -Wait # Disable docs generation for now
+            Start-Process $patcher_exe -WorkingDirectory $managed_dir -ArgumentList "-c -p `"$managed_dir`" $patcher_file" -NoNewWindow -Wait
         }
     } catch {
         Write-Host "Error: Could not start or complete patching process"
